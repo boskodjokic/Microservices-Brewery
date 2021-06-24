@@ -1,3 +1,3 @@
-# MSSC BEER SERVICE
+# MSSC BREWERY
 Microservices example with Spring
 
