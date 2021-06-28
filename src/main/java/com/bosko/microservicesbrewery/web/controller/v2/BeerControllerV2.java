@@ -1,12 +1,13 @@
 package com.bosko.microservicesbrewery.web.controller.v2;
 
-import com.bosko.microservicesbrewery.web.model.v2.BeerDtoV2;
 import com.bosko.microservicesbrewery.services.v2.BeerServiceV2;
+import com.bosko.microservicesbrewery.web.model.v2.BeerDtoV2;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @RequestMapping("/api/v2/beer")
@@ -25,7 +26,7 @@ public class BeerControllerV2 {
     }
 
     @PostMapping
-    public ResponseEntity handlePost(@RequestBody BeerDtoV2 beerDtoV2) {
+    public ResponseEntity handlePost(@Valid @RequestBody BeerDtoV2 beerDtoV2) {
         BeerDtoV2 savedDto = beerServiceV2.saveNewBeer(beerDtoV2);
 
         HttpHeaders headers = new HttpHeaders();
@@ -46,4 +47,5 @@ public class BeerControllerV2 {
     public void deleteBeer(@PathVariable("beerId") UUID beerId) {
         beerServiceV2.deleteById(beerId);
     }
+
 }
